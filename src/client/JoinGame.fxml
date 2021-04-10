@@ -1,0 +1,12 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<GridPane fx:controller="client.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Button text="Back" onAction="#back" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <Label text="Lobby Code:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="newGameCode" promptText="Enter Game Code" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Button text="Enter" onAction="#join" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+</GridPane>

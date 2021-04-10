@@ -1,31 +1,39 @@
 package client;
 
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import net.Client;
-import net.Connection;
-import java.util.concurrent.LinkedBlockingDeque;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import java.io.IOException;
+
 
 public class Controller {
-    Client client;
-    private static LinkedBlockingDeque<String> messagesIn;
-
     @FXML
-    public void initialize() {
-        messagesIn = new LinkedBlockingDeque<>();
-        client = new Client(this::onMessage, messagesIn);
-        client.send("Connected to server");
+    public TextField newGameCode;
+    @FXML
+    public GridPane mainPane;
+
+
+    public void newGame(ActionEvent actionEvent) throws IOException {
+        Main.primaryStage.setScene(Main.newGame);
+        Main.client.send("NEWGAME");
     }
 
-
-    public void onMessage(Connection connection) {
-        try {
-            while (!messagesIn.isEmpty()) {
-                System.out.println(messagesIn.takeFirst());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void back(ActionEvent actionEvent) throws IOException {
+        Main.primaryStage.setScene(Main.mainMenu);
     }
 
+    public void joinGame(ActionEvent actionEvent) throws IOException {
+        Main.primaryStage.setScene(Main.joinGame);
+    }
+
+    public void join(ActionEvent actionEvent) {
+        Main.client.send("JOIN " + newGameCode.getText());
+    }
+
+    public void exit(ActionEvent actionEvent) {
+        Main.client.disconnect();
+        System.exit(0);
+    }
 }

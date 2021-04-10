@@ -19,7 +19,6 @@ public class Controller {
         try {
             while (!ServerData.messagesIn.isEmpty()) {
                 System.out.println(client.getID() + " " + data.getMessagesIn().takeFirst());
-                client.send("Hello from server");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -28,13 +27,9 @@ public class Controller {
 
 
 
-    public void sendToAll() {
+    public void sendToAll(String message) {
         for (Connection client : data.getClients()) {
-            if (client.isClosed()) {
-                data.getClients().remove(client);
-            } else {
-                client.send("Hello from server");
-            }
+            client.send(message);
         }
     }
 }
