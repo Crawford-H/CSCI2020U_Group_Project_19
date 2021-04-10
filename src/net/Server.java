@@ -30,6 +30,7 @@ public class Server implements Runnable {
     // data from the server
     private ServerData data;
 
+
     // constructor
     public Server(int port, ServerData data, Connection.Update updateMessages) {
         try {

@@ -15,6 +15,7 @@ public class Client {
     // contains the connection from to the server
     private Connection connection;
 
+
     // constructor
     public Client(Connection.Update onMessage, LinkedBlockingDeque<String> messagesIn) {
         try {

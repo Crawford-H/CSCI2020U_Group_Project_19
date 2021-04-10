@@ -15,11 +15,13 @@ public class ServerData {
     // ArrayList of clients
     public static ArrayList<Connection> clients;
 
+
     // Constructor
     public ServerData() {
         messagesIn = new LinkedBlockingDeque<>();
         clients = new ArrayList<>();
     }
+
 
     // Getters
     public ArrayList<Connection> getClients() { return clients; }

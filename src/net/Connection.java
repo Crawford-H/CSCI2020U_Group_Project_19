@@ -30,11 +30,11 @@ public class Connection implements Runnable {
     private static LinkedBlockingDeque<String> messagesIn;
     // Method to handle incoming messages
     private Update onMessage;
-
     // interface so the connection can call a method every time a message is received
     public interface Update {
         void Message(Connection connection);
     }
+
 
     // constructor
     public Connection(Socket socket, int ID, LinkedBlockingDeque<String> messagesIn, Update update) {
@@ -85,6 +85,7 @@ public class Connection implements Runnable {
     // getters
     public int getID() { return ID; }
     public boolean isClosed() { return socket.isClosed(); }
+
 
     // reads in messages from client then invokes method given from implementation
     private void addMessages()  {
