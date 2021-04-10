@@ -30,7 +30,11 @@ public class Controller {
 
     public void sendToAll() {
         for (Connection client : data.getClients()) {
-            client.send("Hello from server");
+            if (client.isClosed()) {
+                data.getClients().remove(client);
+            } else {
+                client.send("Hello from server");
+            }
         }
     }
 }
