@@ -1,0 +1,9 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+
+<GridPane fx:controller="client.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Button text="Rock" onAction="#rockButton" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Button text="Paper" onAction="#paperButton" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <Button text="Scissors" onAction="#scissorsButton" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+</GridPane>

@@ -70,7 +70,7 @@ public class Connection implements Runnable {
             socket.close();
             in.close();
             out.close();
-            System.out.println("[SERVER] " + ID + " has disconnected");
+            System.out.println("Disconnected");
         } catch (IOException e) {
             e.printStackTrace();
         }

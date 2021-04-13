@@ -3,37 +3,50 @@ package client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import java.io.IOException;
+import net.Client;
+import net.Connection;
+import java.util.concurrent.LinkedBlockingDeque;
 
 
 public class Controller {
+    private Client client;
+    private static LinkedBlockingDeque<String> messagesIn;
+
     @FXML
-    public TextField newGameCode;
-    @FXML
-    public GridPane mainPane;
-
-
-    public void newGame(ActionEvent actionEvent) throws IOException {
-        Main.primaryStage.setScene(Main.newGame);
-        Main.client.send("NEWGAME");
+    public void initialize() {
+        messagesIn = new LinkedBlockingDeque<>();
+        client = new Client(this::onMessage, messagesIn);
+        client.send("CONNECTED");
     }
 
-    public void back(ActionEvent actionEvent) throws IOException {
-        Main.primaryStage.setScene(Main.mainMenu);
+    public void onMessage(Connection connection) {
+        try {
+            while (!messagesIn.isEmpty()) {
+                String message = messagesIn.takeFirst();
+                handleMessages(client, message);
+                System.out.println("[SERVER] " + message);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void joinGame(ActionEvent actionEvent) throws IOException {
-        Main.primaryStage.setScene(Main.joinGame);
+    private void handleMessages(Client client, String message) {
+        String[] args = message.split(" ");
+        switch (args[0]) {
+
+        }
     }
 
-    public void join(ActionEvent actionEvent) {
-        Main.client.send("JOIN " + newGameCode.getText());
+    public void rockButton(ActionEvent actionEvent) {
+        client.send("ROCK");
     }
 
-    public void exit(ActionEvent actionEvent) {
-        Main.client.disconnect();
-        System.exit(0);
+    public void paperButton(ActionEvent actionEvent) {
+        client.send("PAPER");
+    }
+
+    public void scissorsButton(ActionEvent actionEvent) {
+        client.send("SCISSORS");
     }
 }
