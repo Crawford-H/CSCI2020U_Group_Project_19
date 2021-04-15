@@ -4,16 +4,25 @@ package server;
 import net.Connection;
 
 public class Game {
+    /*-----------------------------------------------------------------
+                         ***DESCRIPTION***
+       This class acts as a container for data for the Rock Paper
+       Scissors game.
+     -----------------------------------------------------------------*/
+
+    // variables
     private Connection player1;
     private Connection player2;
     private String player1Choice;
     private String player2Choice;
     private State state;
+    // enum to hold the state of the game, whether it is running or not
     public enum State {
         stopped,
         started
     }
 
+    // constructor
     public Game() {
         state = State.stopped;
     }
