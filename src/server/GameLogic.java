@@ -55,5 +55,4 @@ public class GameLogic {
         // P1 would equal P2
         return 0;
     }
-
 }
