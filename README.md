@@ -31,7 +31,9 @@ Steps to play Rock Paper Scissors OPTION 1:
 Steps to play Rock Paper Scissors OPTION 2:
 1. navigate to out/production/CSCI2020U_Group_Project_19 in the terminal
 2. run server with command "java server.Main"
-3. run as many clients with separate terminals with command "java client.Main"
+3. run as many clients with separate terminals with command "java client.Main" 
+
+**Note if run using precompiled files, resources file must be placed in out/production/CSCI2020U_Group_Project_19**
 
 
 Resources
